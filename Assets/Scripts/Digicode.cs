@@ -16,6 +16,9 @@ public class Digicode : MonoBehaviour
     [SerializeField] private AudioClip Touche;
     [SerializeField] private AudioClip Erreur;
     [SerializeField] private AudioClip Correct;
+
+    // Clé
+    [SerializeField] private GameObject[] Keys;
     void Start()
     {
         Valider.interactable = false;
@@ -48,6 +51,8 @@ public class Digicode : MonoBehaviour
             Reponse.text = "OUI";
             audioSource.volume = 1;
             audioSource.PlayOneShot(Correct);
+            for (int i = 0; i < Keys.Length; i++)
+                Keys[i].SetActive(true);
         }
         else
         {
