@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TimerDigit : MonoBehaviour
 {
     public float temps = 0f;
+    public int sceneIndex;
     void Start()
     {
         StartCoroutine(chronos());
@@ -22,6 +24,7 @@ public class TimerDigit : MonoBehaviour
         if(temps == 0)
         {
             Debug.Log("PERDU Fin du temps");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + sceneIndex);
         }
     }
 
