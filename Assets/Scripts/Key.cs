@@ -19,6 +19,7 @@ public class Key : MonoBehaviour
         if (CanOpen)
         {
             IsOpen = true;
+            CanOpen = false;
             audioSource.PlayOneShot(Serrure);
         }
         
@@ -30,8 +31,7 @@ public class Key : MonoBehaviour
         {
             audioSource.PlayOneShot(Door);
             StartCoroutine(DoorIsOpenning(this.transform.gameObject));
-            //this.transform.Rotate(new Vector3(0, 1, 0), -90);
-            CanOpen = false;
+            IsOpen = false;
         }
     }
 
