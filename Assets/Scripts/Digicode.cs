@@ -10,6 +10,12 @@ public class Digicode : MonoBehaviour
     [SerializeField] private string CodeATrouver;
     [SerializeField] private string Code = "";
     [SerializeField] private int NbNombres = 0;
+
+    // Sons
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip Touche;
+    [SerializeField] private AudioClip Erreur;
+    [SerializeField] private AudioClip Correct;
     void Start()
     {
         Valider.interactable = false;
@@ -19,6 +25,8 @@ public class Digicode : MonoBehaviour
 
     public void SaisieCode(int nombre)
     {
+        audioSource.volume = 1;
+        audioSource.PlayOneShot(Touche);
         if (NbNombres < 3)
         {
             Valider.interactable = false;
@@ -38,15 +46,22 @@ public class Digicode : MonoBehaviour
         if(Code == CodeATrouver)
         {
             Reponse.text = "OUI";
+            audioSource.volume = 1;
+            audioSource.PlayOneShot(Correct);
         }
         else
         {
+            audioSource.volume = 0.3f;
+            audioSource.PlayOneShot(Erreur);
             Reponse.text = "NON";
         }
     }
 
     public void SupprimerCode()
     {
+        audioSource.volume = 1;
+        audioSource.PlayOneShot(Touche);
+
         if (NbNombres > 0)
         {
             Valider.interactable = false;
