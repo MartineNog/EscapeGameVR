@@ -9,6 +9,6 @@ public class Key : MonoBehaviour
     {
         GameObject door = args.interactableObject.transform.gameObject;
         print(this.name);
-        this.transform.Rotate(new Vector3(1, 0, 0), -90);
+        this.transform.Rotate(new Vector3(0, 1, 0), -90);
     }
 }
