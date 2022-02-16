@@ -29,6 +29,7 @@ public class Manager : MonoBehaviour
     }
     private void Update()
     {
+        //print(PlateformExit.name);
         if (CodeTouve && !ClesApparues)
         {
             ClesApparues = true;
