@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class TextEnigmeBtn : MonoBehaviour
 {
-    public Text TextEnigme;
+    [SerializeField] private Text TextEnigme;
     public void mettreText(string text)
     {
         TextEnigme.text = text;

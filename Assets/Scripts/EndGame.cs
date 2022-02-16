@@ -8,6 +8,6 @@ public class EndGame : MonoBehaviour
 {
     public void TheEnd(SelectEnterEventArgs args)
     {
-        SceneManager.LoadScene(3);
+        Manager.Manager_s.Fin = true;
     }
 }

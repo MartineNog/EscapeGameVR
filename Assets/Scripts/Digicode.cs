@@ -7,9 +7,8 @@ public class Digicode : MonoBehaviour
     [SerializeField] private Button Valider;
     [SerializeField] private Text Saisie;
     [SerializeField] private Text Reponse;
-    [SerializeField] private string CodeATrouver;
-    [SerializeField] private string Code = "";
-    [SerializeField] private int NbNombres = 0;
+    private string Code = "";
+    private int NbNombres = 0;
 
     // Sons
     [SerializeField] private AudioSource audioSource;
@@ -17,8 +16,6 @@ public class Digicode : MonoBehaviour
     [SerializeField] private AudioClip Erreur;
     [SerializeField] private AudioClip Correct;
 
-    // Clé
-    [SerializeField] private GameObject[] Keys;
     void Start()
     {
         Valider.interactable = false;
@@ -46,20 +43,19 @@ public class Digicode : MonoBehaviour
 
     public void VerifierCode()
     {
-        if(Code == CodeATrouver)
+        if(Code == Manager.Manager_s.CodeATrouver)
         {
-            Reponse.text = "OUI";
+            Reponse.text = "CODE CORRECT";
             audioSource.volume = 1;
             audioSource.PlayOneShot(Correct);
-            for (int i = 0; i < Keys.Length; i++)
-                Keys[i].SetActive(true);
+            Manager.Manager_s.CodeTouve = true;
         }
         else
         {
             audioSource.volume = 0.3f;
             audioSource.PlayOneShot(Erreur);
-            Reponse.text = "NON";
-            TimerDigit.Temps_s.temps -= 300;
+            Reponse.text = "CODE INCORRECT";
+            Manager.Manager_s.Temps -= Manager.Manager_s.PenaliterTemps;
         }
     }
 
