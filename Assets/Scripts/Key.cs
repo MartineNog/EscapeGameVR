@@ -31,6 +31,7 @@ public class Key : MonoBehaviour
                 audioSource.PlayOneShot(FalseKey);
                 
                 args.interactableObject.transform.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+                args.interactableObject.transform.position= new Vector3(4.65f, 1.21f, -2.391f);
                 StartCoroutine(Wait(args.interactableObject.transform.gameObject));
             }
             
