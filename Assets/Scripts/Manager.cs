@@ -32,23 +32,23 @@ public class Manager : MonoBehaviour
         if (CodeTouve && !ClesApparues)
         {
             ClesApparues = true;
-            for (int i = 0; i < Keys.Length; i++)   // Faire apparaitre 5 clés dont la clé correcte permettant de sortir de la salle
+            for (int i = 0; i < Keys.Length; i++)   // Faire apparaitre 5 clï¿½s dont la clï¿½ correcte permettant de sortir de la salle
                 Keys[i].SetActive(true);
         }
 
-        if (Temps <= 0) // Si temps écoulé
+        if (Temps <= 0) // Si temps ï¿½coulï¿½
         {
             Debug.Log("PERDU Fin du temps");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        if (Fin)    // Si la sortie a été trouvée
+        if (Fin)    // Si la sortie a ï¿½tï¿½ trouvï¿½e
         {
             SceneManager.LoadScene(3);
         }
 
-        if(Keys[2].transform.position.y <= 0)
-        {
-            Keys[2].transform.position = new Vector3(2.73f, 2.05f, 2.28f);
+        if(Keys[2].transform.position.y <= 0)
+        {
+            Keys[2].transform.position = new Vector3(2.73f, 2.05f, 2.28f);
         }
 
         /*if (IsOpen)
