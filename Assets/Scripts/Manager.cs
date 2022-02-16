@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Manager : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject[] Keys;
     public bool CanOpenDoor = false;
     public bool IsOpen = false;
-    //[SerializeField] private GameObject PlateformExit;
+    public GameObject PlateformExit;
     public bool Fin = false;
 
     private bool ClesApparues = false;
@@ -24,11 +25,10 @@ public class Manager : MonoBehaviour
     {
         Manager_s = this;
         CodeTouve = false;
-        //PlateformExit.GetComponent<TeleportationAnchor>().enabled = false;
+        PlateformExit.GetComponent<TeleportationAnchor>().enabled = false;
     }
     private void Update()
     {
-        //print(PlateformExit.name);
         if (CodeTouve && !ClesApparues)
         {
             ClesApparues = true;
@@ -51,7 +51,7 @@ public class Manager : MonoBehaviour
             Keys[2].transform.position = new Vector3(2.73f, 2.05f, 2.28f);
         }
 
-        /*if (IsOpen)
-            PlateformExit.GetComponent<TeleportationAnchor>().enabled = true;*/
+        if (IsOpen)
+            PlateformExit.GetComponent<TeleportationAnchor>().enabled = true;
     }
 }
