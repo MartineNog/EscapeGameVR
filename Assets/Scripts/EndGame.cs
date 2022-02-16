@@ -8,7 +8,7 @@ public class EndGame : MonoBehaviour
 {
     public void TheEnd(SelectEnterEventArgs args)
     {
-        if (Manager.Manager_s.IsOpen)
-            Manager.Manager_s.Fin = true;
+        if (Manager.Manager_s.IsOpen)   // Si la porte a bien été ouverte
+            Manager.Manager_s.Fin = true;   // On indique que la partie peut être finie
     }
 }
