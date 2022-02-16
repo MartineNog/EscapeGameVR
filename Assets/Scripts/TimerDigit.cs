@@ -6,27 +6,18 @@ using UnityEngine.UI;
 
 public class TimerDigit : MonoBehaviour
 {
-    public float temps = 0f;
-    public int sceneIndex;
     void Start()
     {
         StartCoroutine(chronos());
-        temps = temps + 1;
+        Manager.Manager_s.Temps++;
     }
     IEnumerator chronos()
     {
-        while (temps > 0)
+        while ( Manager.Manager_s.Temps  > 0)
         {
-            temps = temps - 1;
+            Manager.Manager_s.Temps--;
             yield return new WaitForSeconds(1f);
-            GetComponent<Text> ().text = string.Format("{0:0}:{1:00}", Mathf.Floor(temps /60), temps % 60);
-        }
-        if(temps == 0)
-        {
-            Debug.Log("PERDU Fin du temps");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + sceneIndex);
+            GetComponent<Text> ().text = string.Format("{0:0}:{1:00}", Mathf.Floor(Manager.Manager_s.Temps / 60), Manager.Manager_s.Temps  % 60);
         }
     }
-
-    
 }

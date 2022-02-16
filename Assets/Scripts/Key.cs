@@ -10,42 +10,35 @@ public class Key : MonoBehaviour
     [SerializeField] private AudioClip FalseKey;
     [SerializeField] private AudioClip Door;
 
-    [SerializeField] private bool CanOpen = true;
-    [SerializeField] private bool IsOpen = false;
 
     public void OpenDoor(SelectEnterEventArgs args)
     {
         GameObject door = args.interactableObject.transform.gameObject;
         print($"Objet : {args.interactableObject.transform.name}");
-        if (CanOpen)
+       
+        if (args.interactableObject.transform.name == "GoodKey")
         {
-            if (args.interactableObject.transform.name == "GoodKey")
-            {
-                IsOpen = true;
-                CanOpen = false;
-                audioSource.PlayOneShot(GoodKey);
-            }
-            else
-            {
-                print("MauvaiseCle");
-                audioSource.PlayOneShot(FalseKey);
-                
-                args.interactableObject.transform.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
-                args.interactableObject.transform.position= new Vector3(4.65f, 1.21f, -2.391f);
-                StartCoroutine(Wait(args.interactableObject.transform.gameObject));
-            }
-            
+        Manager.Manager_s.CanOpenDoor = true;
+            audioSource.PlayOneShot(GoodKey);
         }
-        
+        else
+        {
+            print("MauvaiseCle");
+            audioSource.PlayOneShot(FalseKey);
+                
+            args.interactableObject.transform.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+            args.interactableObject.transform.position= new Vector3(4.65f, 1.21f, -2.391f);
+            StartCoroutine(Wait(args.interactableObject.transform.gameObject));
+        } 
     }
 
     public void GoAway(SelectEnterEventArgs args)
     {
-        if (IsOpen)
+        if (Manager.Manager_s.CanOpenDoor)
         {
             audioSource.PlayOneShot(Door);
             StartCoroutine(DoorIsOpenning(this.transform.gameObject));
-            IsOpen = false;
+            Manager.Manager_s.CanOpenDoor = false;
         }
     }
 

@@ -17,12 +17,6 @@ public class LoadLevel : MonoBehaviour
         btn.onClick.AddListener(TaskOnClick);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void TaskOnClick()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + sceneIndex);
