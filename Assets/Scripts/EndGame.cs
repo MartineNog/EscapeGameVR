@@ -8,6 +8,7 @@ public class EndGame : MonoBehaviour
 {
     public void TheEnd(SelectEnterEventArgs args)
     {
-        Manager.Manager_s.Fin = true;
+        if (Manager.Manager_s.IsOpen)
+            Manager.Manager_s.Fin = true;
     }
 }

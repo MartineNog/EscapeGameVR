@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Manager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class Manager : MonoBehaviour
     public bool CodeTouve;
     [SerializeField] private GameObject[] Keys;
     public bool CanOpenDoor = false;
+    public bool IsOpen = false;
+    public GameObject PlateformExit;
     public bool Fin = false;
 
     private bool ClesApparues = false;
@@ -22,24 +25,33 @@ public class Manager : MonoBehaviour
     {
         Manager_s = this;
         CodeTouve = false;
+        PlateformExit.GetComponent<TeleportationAnchor>().enabled = false;
     }
     private void Update()
     {
         if (CodeTouve && !ClesApparues)
         {
             ClesApparues = true;
-            for (int i = 0; i < Keys.Length; i++)   // Faire apparaitre 5 clés dont la clé correcte permettant de sortir de la salle
+            for (int i = 0; i < Keys.Length; i++)   // Faire apparaitre 5 clï¿½s dont la clï¿½ correcte permettant de sortir de la salle
                 Keys[i].SetActive(true);
         }
 
-        if (Temps <= 0) // Si temps écoulé
+        if (Temps <= 0) // Si temps ï¿½coulï¿½
         {
             Debug.Log("PERDU Fin du temps");
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        if (Fin)    // Si la sortie a été trouvée
+        if (Fin)    // Si la sortie a ï¿½tï¿½ trouvï¿½e
         {
             SceneManager.LoadScene(3);
         }
+
+        if(Keys[2].transform.position.y <= 0)
+        {
+            Keys[2].transform.position = new Vector3(2.73f, 2.05f, 2.28f);
+        }
+
+        if (IsOpen)
+            PlateformExit.GetComponent<TeleportationAnchor>().enabled = true;
     }
 }
