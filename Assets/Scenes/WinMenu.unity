@@ -3334,7 +3334,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "DEVELOPPEUR:\n\nQUENTIN WASCHEUL \nMARTINE NOGU\xC8S"
+  m_Text: "DEVELOPPEUR:\n\nMARTINE NOGU\xC8S\nQUENTIN WASCHEUL \n"
 --- !u!222 &1669361807
 CanvasRenderer:
   m_ObjectHideFlags: 0
