@@ -59,6 +59,7 @@ public class Digicode : MonoBehaviour
             audioSource.volume = 0.3f;
             audioSource.PlayOneShot(Erreur);
             Reponse.text = "NON";
+            TimerDigit.Temps_s.temps -= 300;
         }
     }
 
