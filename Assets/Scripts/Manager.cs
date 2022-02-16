@@ -46,9 +46,17 @@ public class Manager : MonoBehaviour
             SceneManager.LoadScene(3);
         }
 
-        if(Keys[2].transform.position.y <= 0)
-        {
-            Keys[2].transform.position = new Vector3(2.73f, 2.05f, 2.28f);
+        if(Keys[2].transform.position.y <= 0)
+
+        {
+            Rigidbody rb = Keys[2].GetComponent<Rigidbody>();
+
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            
+
+            Keys[2].transform.position = new Vector3(2.73f, 2.05f, 2.28f);
+
         }
 
         if (IsOpen)
