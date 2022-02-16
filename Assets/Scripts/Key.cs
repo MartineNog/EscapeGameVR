@@ -6,7 +6,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Key : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip Serrure;
+    [SerializeField] private AudioClip GoodKey;
+    [SerializeField] private AudioClip FalseKey;
     [SerializeField] private AudioClip Door;
 
     [SerializeField] private bool CanOpen = true;
@@ -15,12 +16,25 @@ public class Key : MonoBehaviour
     public void OpenDoor(SelectEnterEventArgs args)
     {
         GameObject door = args.interactableObject.transform.gameObject;
-        print(this.name);
+        print($"Objet : {args.interactableObject.transform.name}");
         if (CanOpen)
         {
-            IsOpen = true;
-            CanOpen = false;
-            audioSource.PlayOneShot(Serrure);
+            if (args.interactableObject.transform.name == "GoodKey")
+            {
+                IsOpen = true;
+                CanOpen = false;
+                audioSource.PlayOneShot(GoodKey);
+            }
+            else
+            {
+                print("MauvaiseCle");
+                audioSource.PlayOneShot(FalseKey);
+                
+                args.interactableObject.transform.gameObject.GetComponent<XRGrabInteractable>().enabled = false;
+                args.interactableObject.transform.position= new Vector3(4.65f, 1.21f, -2.391f);
+                StartCoroutine(Wait(args.interactableObject.transform.gameObject));
+            }
+            
         }
         
     }
@@ -44,4 +58,9 @@ public class Key : MonoBehaviour
         }
     }
 
+    IEnumerator Wait(GameObject key)
+    {
+        yield return new WaitForSeconds(0.5f);
+        key.GetComponent<XRGrabInteractable>().enabled = true;
+    }
 }
