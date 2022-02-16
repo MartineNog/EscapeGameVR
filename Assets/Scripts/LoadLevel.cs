@@ -17,8 +17,8 @@ public class LoadLevel : MonoBehaviour
         btn.onClick.AddListener(TaskOnClick);
     }
 
-    void TaskOnClick()
+    void TaskOnClick()  // A l'appui du bouton reset
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + sceneIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + sceneIndex);  // On recharge la scène
     }
 }
