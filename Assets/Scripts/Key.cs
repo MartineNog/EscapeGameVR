@@ -49,6 +49,7 @@ public class Key : MonoBehaviour
             door.transform.Rotate(new Vector3(0, 1, 0), -1f);
             yield return new WaitForEndOfFrame();
         }
+        Manager.Manager_s.IsOpen = true;
     }
 
     IEnumerator Wait(GameObject key)

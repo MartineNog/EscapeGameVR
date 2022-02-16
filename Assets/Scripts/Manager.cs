@@ -13,6 +13,8 @@ public class Manager : MonoBehaviour
     public bool CodeTouve;
     [SerializeField] private GameObject[] Keys;
     public bool CanOpenDoor = false;
+    public bool IsOpen = false;
+    //[SerializeField] private GameObject PlateformExit;
     public bool Fin = false;
 
     private bool ClesApparues = false;
@@ -22,9 +24,11 @@ public class Manager : MonoBehaviour
     {
         Manager_s = this;
         CodeTouve = false;
+        //PlateformExit.GetComponent<TeleportationAnchor>().enabled = false;
     }
     private void Update()
     {
+        //print(PlateformExit.name);
         if (CodeTouve && !ClesApparues)
         {
             ClesApparues = true;
@@ -41,5 +45,13 @@ public class Manager : MonoBehaviour
         {
             SceneManager.LoadScene(3);
         }
+
+        if(Keys[2].transform.position.y <= 0)
+        {
+            Keys[2].transform.position = new Vector3(2.73f, 2.05f, 2.28f);
+        }
+
+        /*if (IsOpen)
+            PlateformExit.GetComponent<TeleportationAnchor>().enabled = true;*/
     }
 }
